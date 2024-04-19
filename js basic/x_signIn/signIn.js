@@ -19,7 +19,29 @@ function validatePassword(password) {
   return true;
 }
 
+function isOver20Age(date) {
+  const today = new Date();
+  const birthdate = new Date(date);
+  const age = today.getFullYear() - birthdate.getFullYear();
+
+  if (age === 20) {
+    console.log(age + "세입니다.");
+    return true;
+  }
+  if (age > 20) {
+    console.log(age + "세로 20세 이상입니다.");
+    return true;
+  }
+  console.log(age + "세로 20세 미만입니다.");
+  return false;
+}
+
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
+const birthdateInput = document.getElementById("birthdate");
+
+const form = document.querySelector("form");
 
 passwordInput.addEventListener("change", (event) => {
   const password = event.target.value;
@@ -47,6 +69,33 @@ passwordInput.addEventListener("change", (event) => {
     const errorMessage = document.querySelector(".error-message");
     if (errorMessage) {
       errorMessage.remove();
+    }
+  }
+});
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const name = nameInput.value;
+  const email = emailInput.value;
+  const password = passwordInput.value;
+  const birthdate = birthdateInput.value;
+
+  const isValidPassword = validatePassword(password);
+  const isValidBirthdate = isOver20Age(birthdate);
+
+  if (isValidPassword && isValidBirthdate) {
+    console.log(
+      "회원가입에 성공했습니다." + name + email + password + birthdate
+    );
+  } else {
+    console.log("회원가입에 실패했습니다. 그 이유는 다음과 같습니다.");
+
+    if (!isValidPassword) {
+      console.log("비밀번호가 유효하지 않습니다." + password);
+    }
+    if (!isValidBirthdate) {
+      console.log("나이가 유효하지 않습니다." + birthdate);
     }
   }
 });
