@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>async_sync</title>
+  </head>
+  <body>
+    <button>데이터 불러오기</button>
+    <div id="result"></div>
+  </body>
+
+  <script defer>
+    const button = document.querySelector("button");
+    button.addEventListener("click", fetchData);
+
+    function fetchData() {
+      loadDataAsync((data) => {
+        document.getElementById("result").innerText = data;
+      });
+    }
+
+    function loadDataAsync(callback) {
+      // 비동기적으로 데이터를 불러오는 시뮬레이션을 합니다.
+      setTimeout(() => {
+        const data = "비동기적으로 불러온 데이터";
+        callback(data);
+      }, 2000); // 2초 후에 데이터를 전달합니다.
+    }
+  </script>
+</html>
