@@ -15,3 +15,6 @@ const person2: {name: string; age: number;} = {
 };
 
 
+console.log(
+    person.name.toUpperCase(),
+);
