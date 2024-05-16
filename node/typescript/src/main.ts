@@ -1,4 +1,7 @@
 import "./style.css";
+import { getTweets } from "./getTweet";
+
+getTweets();
 
 const number = 1;
 const string = "hello";
@@ -13,4 +16,3 @@ function sum(a: number, b: number): number {
 
 const result = sum(1, 2);
 // const resultError = sum(1, "2");
-
