@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import mongoose from "mongoose";
 import TweetModel from "../schema/tweet";
+import UserModel from "../schema/user";
 
 const router = express.Router();
 

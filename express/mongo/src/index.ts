@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import tweetRouter from "./router/tweet";
+import userRouter from "./router/user";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
@@ -18,8 +19,10 @@ db.once("open", function () {
 const app: Express = express();
 const port = 3000;
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server ");
+app.use(express.json());
+
+app.get("/", async (req: Request, res: Response) => {
+  res.send("");
 });
 
 app.listen(port, () => {
@@ -28,4 +31,4 @@ app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
 
-app.use(tweetRouter);
+app.use(tweetRouter, userRouter);

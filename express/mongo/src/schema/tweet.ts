@@ -9,7 +9,7 @@ type Tweet = {
 
 const tweetSchema = new mongoose.Schema<Tweet>({
   content: { type: String, required: true },
-  userId: { type: Schema.Types.ObjectId, required: true },
+  userId: { type: Schema.Types.ObjectId, required: true, ref: "User" },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });
