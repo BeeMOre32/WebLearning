@@ -1,11 +1,14 @@
 import express, { Request, Response } from "express";
+import mongoose from "mongoose";
+import TweetModel from "../schema/tweet";
 
 const router = express.Router();
 
 router
   .route("/tweet")
-  .get((req: Request, res: Response) => {
-    res.send("Fake Tweet");
+  .get(async (req: Request, res: Response) => {
+    const data = await TweetModel.find().populate("userId");
+    res.send(data);
   })
   .post((req: Request, res: Response) => {
     req.body.text = "Fake Tweet created";

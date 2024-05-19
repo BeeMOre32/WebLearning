@@ -1,19 +1,17 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 type Tweet = {
   content: string;
-  userId: string;
+  userId: Schema.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
-  _id: string;
 };
 
 const tweetSchema = new mongoose.Schema<Tweet>({
   content: { type: String, required: true },
-  userId: { type: String, required: true },
-  createdAt: { type: Date, required: true },
-  updatedAt: { type: Date, required: true },
-  _id: { type: String, required: true },
+  userId: { type: Schema.Types.ObjectId, required: true },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
 });
 
 const TweetModel = mongoose.model<Tweet>("Tweet", tweetSchema);
