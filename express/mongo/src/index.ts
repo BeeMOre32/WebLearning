@@ -3,6 +3,7 @@ import tweetRouter from "./router/tweet";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { insertTweetOne } from "./util/insertTweet";
+import { createUser } from "./util/createUser";
 
 dotenv.config();
 
