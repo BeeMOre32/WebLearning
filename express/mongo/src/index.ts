@@ -1,5 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import tweetRouter from "./router/tweet";
+import { MongoClient, ServerApiVersion } from "mongodb";
+import dotenv from "dotenv";
 
 const app: Express = express();
 const port = 3000;
@@ -16,10 +18,10 @@ app.listen(port, () => {
 
 app.use(tweetRouter);
 
-import { MongoClient, ServerApiVersion } from "mongodb";
-// use .env url which name is MONOGO_URL
+dotenv.config();
 
 const uri = process.env.MONGO_URL || "";
+console.log("uri", uri);
 
 const client = new MongoClient(uri, {
   serverApi: {
