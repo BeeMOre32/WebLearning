@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from "express";
 import tweetRouter from "./router/tweet";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import { insertTweetOne } from "./util/insertTweet";
 
 dotenv.config();
 
