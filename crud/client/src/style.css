@@ -151,6 +151,7 @@ main {
 
 .main-tweet {
   overflow-y: auto;
+  width: 100%;
 }
 
 .user-photo {
