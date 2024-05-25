@@ -99,7 +99,7 @@ main {
   flex: 1;
 }
 
-.main-twiite__input {
+.main-tweet__input {
   width: 100%;
   padding: 10px;
   font-size: 16px;
@@ -109,15 +109,15 @@ main {
   display: flex;
 }
 
-.main-twiite__input::placeholder {
+.main-tweet__input::placeholder {
   color: #999;
 }
 
-.main-twiite__input:focus {
+.main-tweet__input:focus {
   border-color: #007bff;
 }
 
-.main-twiite__input input {
+.main-tweet__input input {
   width: 100%;
   padding: 10px;
   font-size: 20px;
@@ -126,15 +126,15 @@ main {
   border: none;
 }
 
-.main-twiite__input input::placeholder {
+.main-tweet__input input::placeholder {
   color: #999;
 }
 
-.main-twiite__input input:focus {
+.main-tweet__input input:focus {
   border-color: #007bff;
 }
 
-.main-twiite__input button {
+.main-tweet__input button {
   padding: 10px 20px;
   font-size: 16px;
   background-color: #007bff;
@@ -145,7 +145,7 @@ main {
   outline: none;
 }
 
-.main-twiite__input button:hover {
+.main-tweet__input button:hover {
   background-color: #0056b3;
 }
 
