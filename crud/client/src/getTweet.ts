@@ -1,74 +1,53 @@
-// https://jsonplaceholder.typicode.com/posts
+import { getTweetData } from "./util/tweets";
 
-// "id": 1,
-// "name": "Leanne Graham",
-// "username": "Bret",
+export interface TweetList {
+  _id: string;
+  content: string;
+  userId: UserID;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
-interface User {
-  id: number;
+export interface UserID {
+  _id: string;
   name: string;
   username: string;
-}
-
-interface Posts {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
-
-async function getUserById(id: number): Promise<User> {
-  const response = await fetch(
-    `https://jsonplaceholder.typicode.com/users/${id}`
-  );
-  const data = await response.json();
-  return data;
-}
-
-async function getTweetData(): Promise<Posts[]> {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-  const data = await response.json();
-  return data;
+  nickname: string;
 }
 
 export async function getTweets() {
-  const data = await getTweetData();
-
+  const tweetData = (await getTweetData()) as TweetList[];
   const tweetContainer = document.querySelector(".main-tweet");
-  const tweetData = data.splice(0, 10);
 
   console.log(tweetData);
 
-  const userIds = Array.from(new Set(tweetData.map((tweet) => tweet.userId)));
-  const users = await Promise.all(userIds.map((id) => getUserById(id)));
-
   const result = tweetData.map((tweet) => {
-    const user = users.find((user) => user.id === tweet.userId);
+    const { userId, content, createdAt, _id } = tweet;
+    const { username, nickname } = userId;
 
     return `
-            <div class="tweet">
+            <div class="tweet" data-tweetId="${_id}" >
                 <div class="tweet-header">
                     <div class="tweet-info">
                         <div class="user-photo">
-                        <i class="fas fa-user"></i>
+                          <i class="fas fa-user"></i>
                         </div>
-                        <div class="tweet-username">${
-                          user ? user.username : "undefined"
-                        }</div>
-                        <div class="tweet-handle">@${
-                          user ? user.username : "undefined"
-                        }</div>
+                        <div class="tweet-username">${nickname}</div>
+                        <div class="tweet-handle">@${username}</div>
                         <div class="tweet-time">1h</div>
                     </div>
                 </div>
                 <div class="tweet-content">
-                    ${tweet.body}
+                    ${content}
                 </div>
                 <div class="tweet-actions">
                     <i class="far fa-comment"></i>
                     <i class="fas fa-retweet"></i>
                     <i class="far fa-heart"></i>
                     <i class="fas fa-share"></i>
+                    <i class="fas fa-edit" id="tweet__edit"></i>
+                    <i class="fas fa-trash" id="tweet__delete"></i>
+                </div>
                 </div>
             </div>
         `;

@@ -2,7 +2,7 @@ const url = "http://localhost:3000";
 
 type createTweetData = {
   text: string;
-  userId: number;
+  userId: string;
 };
 
 type updateTweetData = {
@@ -20,6 +20,9 @@ export const createTweet = async (data: createTweetData) => {
   const response = await fetch(`${url}/tweet`, {
     method: "POST",
     body: JSON.stringify({ text, userId }),
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   return response.json();

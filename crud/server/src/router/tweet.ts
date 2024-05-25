@@ -12,11 +12,16 @@ router
     const data = await TweetModel.find().populate("userId");
     res.send(data);
   })
-  .post((req: Request, res: Response) => {
-    req.body.text = "Fake Tweet created";
-    const date = new Date();
+  .post(async (req: Request, res: Response) => {
+    const data = await TweetModel.create({
+      content: req.body.text,
+      userId: req.body.userId,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+    console.log("POST /tweet" + data);
 
-    res.send("Fake Tweet created" + date);
+    res.send(data);
   });
 
 router
