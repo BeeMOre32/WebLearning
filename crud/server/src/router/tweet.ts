@@ -29,11 +29,26 @@ router
   .get((req: Request, res: Response) => {
     res.send(`Fake Tweet ${req.params.id}`);
   })
-  .put((req: Request, res: Response) => {
-    res.send(`Fake Tweet ${req.params.id} updated`);
+  .put(async (req: Request, res: Response) => {
+    const { text } = req.body;
+    const { id } = req.params;
+
+    const data = await TweetModel.findByIdAndUpdate(id, {
+      content: text,
+      updatedAt: new Date(),
+    });
+
+    console.log("PUT /tweet/" + id + " " + data);
+
+    res.send(data);
   })
-  .delete((req: Request, res: Response) => {
-    res.send(`Fake Tweet ${req.params.id} deleted`);
+  .delete(async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    const data = await TweetModel.findByIdAndDelete(id);
+    console.log("DELETE /tweet/" + id + " " + data);
+
+    res.send(data);
   });
 
 export default router;
