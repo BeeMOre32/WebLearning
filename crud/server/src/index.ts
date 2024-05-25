@@ -4,6 +4,13 @@ import userRouter from "./router/user";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
+import cors from "cors";
+
+const app: Express = express();
+const port = 3000;
+
+app.use(cors(), express.json(), tweetRouter, userRouter);
+
 dotenv.config();
 
 const url = process.env.MONGO_URL as string;
@@ -16,11 +23,6 @@ db.once("open", function () {
   console.log("Connected to MongoDB with Mongoose");
 });
 
-const app: Express = express();
-const port = 3000;
-
-app.use(express.json());
-
 app.get("/", async (req: Request, res: Response) => {
   res.send("");
 });
@@ -30,5 +32,3 @@ app.listen(port, () => {
 
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
-
-app.use(tweetRouter, userRouter);

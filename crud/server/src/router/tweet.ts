@@ -7,6 +7,8 @@ const router = express.Router();
 router
   .route("/tweet")
   .get(async (req: Request, res: Response) => {
+    console.log("GET /tweet");
+
     const data = await TweetModel.find().populate("userId");
     res.send(data);
   })
