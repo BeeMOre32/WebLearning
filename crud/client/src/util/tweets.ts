@@ -7,7 +7,7 @@ type createTweetData = {
 
 type updateTweetData = {
   text: string;
-  id: number;
+  id: string;
 };
 
 export const getTweetData = async () => {
@@ -33,12 +33,15 @@ export const updateTweet = async (data: updateTweetData) => {
   const response = await fetch(`${url}/tweet/${id}`, {
     method: "PUT",
     body: JSON.stringify({ text }),
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   return response.json();
 };
 
-export const deleteTweet = async (id: number) => {
+export const deleteTweet = async (id: string) => {
   const response = await fetch(`${url}/tweet/${id}`, {
     method: "DELETE",
   });
