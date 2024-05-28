@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 import bcryppt from "bcryptjs";
 
-type User = {
+export type User = {
   name: string;
   username: string;
   nickname: string;
   password: string;
+  _id?: string;
 };
 
 const userSchema = new mongoose.Schema<User>({

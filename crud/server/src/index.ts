@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import UserModel from "./schema/user";
 import bcrypt from "bcryptjs";
+import { generateJWT } from "./auth";
 
 const app: Express = express();
 const port = 3000;
@@ -16,6 +17,7 @@ app.use(cors(), express.json(), tweetRouter, userRouter);
 dotenv.config();
 
 const url = process.env.MONGO_URL as string;
+export const JWT_SECRET = process.env.JWT_SECRET as string;
 mongoose.connect(url);
 
 const db = mongoose.connection;
@@ -65,9 +67,13 @@ app.post("/login", async (req: Request, res: Response) => {
       return res.status(400).send("Invalid credentials");
     }
 
-    console.log("login success");
+    const token = generateJWT(user);
+    console.log("login success token is", token);
 
-    res.send("Logged in");
+    res.send({
+      token,
+      name: user.name,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send("Server error");
