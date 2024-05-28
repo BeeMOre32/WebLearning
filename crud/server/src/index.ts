@@ -13,7 +13,6 @@ const app: Express = express();
 const port = 3000;
 
 app.use(cors(), express.json(), tweetRouter, userRouter);
-
 dotenv.config();
 
 const url = process.env.MONGO_URL as string;

@@ -11,10 +11,8 @@ const tweetButton = document.querySelector(
 
 tweetButton.addEventListener("click", async () => {
   const text = tweetInput.value;
-  const userId = "6649c64d05b880cde4f2bbad";
 
-  console.log(text, userId);
-  const result = await createTweet({ text, userId });
+  const result = await createTweet({ text });
   if (result) {
     tweetInput.value = "";
     getTweets();

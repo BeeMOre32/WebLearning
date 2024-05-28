@@ -12,6 +12,10 @@ loginForm.addEventListener("submit", async (e) => {
     password: formData.get("password"),
   } as loginUserData;
 
-  const result = await loginUser(data);
-  console.log(result);
+  const result = (await loginUser(data)) as { token: string; name: string };
+
+  localStorage.setItem("token", result.token);
+  alert("Login successful");
+
+  location.href = "/";
 });

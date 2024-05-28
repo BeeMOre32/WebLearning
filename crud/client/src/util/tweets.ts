@@ -2,7 +2,6 @@ const url = "http://localhost:3000";
 
 type createTweetData = {
   text: string;
-  userId: string;
 };
 
 type updateTweetData = {
@@ -16,12 +15,15 @@ export const getTweetData = async () => {
 };
 
 export const createTweet = async (data: createTweetData) => {
-  const { text, userId } = data;
+  const { text } = data;
+  const token = localStorage.getItem("token");
+
   const response = await fetch(`${url}/tweet`, {
     method: "POST",
-    body: JSON.stringify({ text, userId }),
+    body: JSON.stringify({ text }),
     headers: {
       "Content-Type": "application/json",
+      "x-auth-token": token || "",
     },
   });
 
