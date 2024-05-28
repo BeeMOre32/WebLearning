@@ -64,6 +64,9 @@ app.post("/login", async (req: Request, res: Response) => {
     if (!isMatch) {
       return res.status(400).send("Invalid credentials");
     }
+
+    console.log("login success");
+
     res.send("Logged in");
   } catch (error) {
     console.error(error);

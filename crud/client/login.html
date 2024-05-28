@@ -16,17 +16,29 @@
       />
     </header>
 
-    <form>
+    <form id="login">
       <h1>비밀번호를 입력하세요</h1>
       <div class="input_container">
-        <input type="email" placeholder="email" class="email_input" />
-        <input type="password" placeholder="password" class="password_input" />
+        <input
+          type="text"
+          placeholder="username"
+          class="id_input"
+          name="username"
+        />
+        <input
+          type="password"
+          placeholder="비밀번호"
+          class="password_input"
+          name="password"
+        />
       </div>
 
       <div class="button_container">
         <button>로그인하기</button>
-        <p>계정이 없으신가요? <a href="">가입하기</a></p>
+        <p>계정이 없으신가요? <a href="/register">가입하기</a></p>
       </div>
     </form>
+
+    <script type="module" defer src="/src/login.ts"></script>
   </body>
 </html>

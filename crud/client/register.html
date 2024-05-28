@@ -17,14 +17,14 @@
       />
     </header>
 
-    <form>
+    <form id="register">
       <h1>계정을 생성하세요</h1>
 
       <div class="input-group">
-        <input type="text" placeholder="이름" id="name" />
-        <input type="email" placeholder="이메일" id="email" />
-        <input type="text" placeholder="아이디" id="id" />
-        <input type="text" placeholder="비밀번호" id="password" />
+        <input type="text" placeholder="이름" name="username" />
+        <input type="text" placeholder="닉네임" name="nickname" />
+        <input type="text" placeholder="아이디" name="id" />
+        <input type="text" placeholder="비밀번호" name="password" />
 
         <div class="date_container">
           <span>
@@ -41,6 +41,6 @@
       <button class="submit-btn">계정 만들기</button>
     </form>
 
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" defer src="/src/register.ts"></script>
   </body>
 </html>
